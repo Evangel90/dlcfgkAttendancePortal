@@ -15,11 +15,6 @@ app.get("/", (req: Request, res: Response) => {
     res.json({ message: "Welcome to the Express + TypeScript Server!" });
 });
 
-// app.post("/", (req: Request, res: Response) => {
-
-//     res.json({ message: "Welcome to the Express + TypeScript Server!" });
-// });
-
 app.use('/api', authRouter)
 
 app.listen(port, () => {

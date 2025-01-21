@@ -3,12 +3,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
-const ping: RequestHandler = async (req: Request, res: Response) => {
-    // console.log(req)
-    const message = await req.body;
-    res.status(201).json({ message: message.body })
-}
-
 const register: RequestHandler = async (req: Request, res: Response) => {
     const { name, email, password, role } = await req.body;
 
@@ -42,4 +36,4 @@ const login: RequestHandler = async (req: Request, res: Response) => {
     }
 };
 
-export { register, login, ping };
+export { register, login };

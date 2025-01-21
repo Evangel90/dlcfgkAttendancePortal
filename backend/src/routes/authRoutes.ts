@@ -3,7 +3,6 @@ import { login, register, ping } from '../controllers/authController';
 
 const authRouter = express.Router();
 
-authRouter.post('/ping', ping)
 authRouter.post('/register', register);
 authRouter.post('/login', login);
 
