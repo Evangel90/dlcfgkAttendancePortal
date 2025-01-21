@@ -3,21 +3,19 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
-const ping: RequestHandler = async(req: Request, res: Response) =>{
-    console.log(req)
-    const message = req.baseUrl;
-    res.status(201).json({message: message})
+const ping: RequestHandler = async (req: Request, res: Response) => {
+    // console.log(req)
+    const message = await req.body;
+    res.status(201).json({ message: message.body })
 }
 
 const register: RequestHandler = async (req: Request, res: Response) => {
-    // const { name, email, password, role } = await req.body;
-
-    // console.log(name, email, password, role)
-    // if (!name || !email || !password) res.status(400).json({ error: "All fields are required" })
+    const { name, email, password, role } = await req.body;
 
     try {
-        const hashedPassword = await bcrypt.hash("password", 10);
-        const user = new User({ name:"name", email: "email@email.com", password: hashedPassword, role:"user" });
+        if (!name || !email || !password) res.status(400).json({ error: "All fields are required" })
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({ name, email, password: hashedPassword, role });
         await user.save();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
