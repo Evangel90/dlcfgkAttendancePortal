@@ -47,6 +47,4 @@ const churchAttendanceSchema = new Schema<IChurchAttendance>({
     timestamps: true, // Adds createdAt and updatedAt timestamps
 });
 
-const ChurchAttendance = mongoose.model<IChurchAttendance>('ChurchAttendance', churchAttendanceSchema);
-
-export { IChurchAttendance, ChurchAttendance };
+export default mongoose.model<IChurchAttendance>('ChurchAttendance', churchAttendanceSchema);

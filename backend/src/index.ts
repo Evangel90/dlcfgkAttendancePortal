@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import authRouter from "./routes/authRoutes";
 import connectDB from './config/db';
+import attendanceRouter from "./routes/attendanceRoutes";
 
 connectDB()
 
@@ -15,7 +16,8 @@ app.get("/", (req: Request, res: Response) => {
     res.json({ message: "Welcome to the Express + TypeScript Server!" });
 });
 
-app.use('/api', authRouter)
+app.use('/user', authRouter)
+app.use('/attendance', attendanceRouter)
 
 app.listen(port, () => {
     console.log(`The server is running at http://localhost:${port}`);
