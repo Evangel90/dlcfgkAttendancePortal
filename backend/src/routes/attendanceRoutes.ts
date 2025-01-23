@@ -12,7 +12,7 @@ const attendanceRouter = express.Router();
 attendanceRouter.get('/getAttendance', getAllAttendance);
 attendanceRouter.get('/getAttendanceById', getAttendanceById);
 attendanceRouter.post('/createAttendance', createAttendance);
-attendanceRouter.put('/updateAttendance', updateAttendance);
-attendanceRouter.delete('/deleteAttendance', deleteAttendance);
+attendanceRouter.patch('/updateAttendance/:id', updateAttendance);
+attendanceRouter.delete('/deleteAttendance/:id', deleteAttendance);
 
 export default attendanceRouter;
