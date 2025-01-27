@@ -22,6 +22,12 @@ const attendanceRouter = express.Router();
  *     responses:
  *       200:
  *         description: A list of attendance records
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Attendance'
  */
 attendanceRouter.get('/getAttendance', authMiddleware, getAllAttendance);
 
@@ -43,6 +49,10 @@ attendanceRouter.get('/getAttendance', authMiddleware, getAllAttendance);
  *     responses:
  *       200:
  *         description: An attendance record
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Attendance'
  */
 attendanceRouter.get('/getAttendanceById', authMiddleware, getAttendanceById);
 
@@ -54,9 +64,19 @@ attendanceRouter.get('/getAttendanceById', authMiddleware, getAttendanceById);
  *   post:
  *     summary: Create a new attendance record
  *     tags: [Attendance]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Attendance'
  *     responses:
  *       201:
  *         description: The created attendance record
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Attendance'
  */
 attendanceRouter.post('/createAttendance', authMiddleware, roleMiddleware, createAttendance);
 
@@ -75,9 +95,19 @@ attendanceRouter.post('/createAttendance', authMiddleware, roleMiddleware, creat
  *           type: string
  *         required: true
  *         description: The ID of the attendance record
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Attendance'
  *     responses:
  *       200:
  *         description: The updated attendance record
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Attendance'
  */
 attendanceRouter.patch('/updateAttendance/:id', authMiddleware, roleMiddleware, updateAttendance);
 
@@ -99,6 +129,13 @@ attendanceRouter.patch('/updateAttendance/:id', authMiddleware, roleMiddleware, 
  *     responses:
  *       200:
  *         description: A message indicating the record was deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
  */
 attendanceRouter.delete('/deleteAttendance/:id', authMiddleware, roleMiddleware, deleteAttendance);
 

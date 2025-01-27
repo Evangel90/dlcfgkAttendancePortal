@@ -16,15 +16,14 @@ const authRouter = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               password:
- *                 type: string
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:
  *         description: User registered successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
  */
 authRouter.post('/register', register);
 
@@ -41,15 +40,14 @@ authRouter.post('/register', register);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               password:
- *                 type: string
+ *             $ref: '#/components/schemas/Login'
  *     responses:
  *       200:
  *         description: User logged in successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/LoginResponse'
  */
 authRouter.post('/login', login);
 
