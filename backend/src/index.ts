@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import authRouter from "./routes/authRoutes";
 import connectDB from './config/db';
 import attendanceRouter from "./routes/attendanceRoutes";
+import setupSwagger from './config/swagger';
 
 connectDB()
 
@@ -18,6 +19,8 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use('/user', authRouter)
 app.use('/attendance', attendanceRouter)
+
+setupSwagger(app);
 
 app.listen(port, () => {
     console.log(`The server is running at http://localhost:${port}`);
