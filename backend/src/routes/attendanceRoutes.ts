@@ -13,9 +13,12 @@ const attendanceRouter = express.Router();
 
 /**
  * @swagger
+ * tags:
+ *   - name: Attendance
  * /attendance/getAttendance:
  *   get:
  *     summary: Get all attendance records
+ *     tags: [Attendance]
  *     responses:
  *       200:
  *         description: A list of attendance records
@@ -24,55 +27,54 @@ attendanceRouter.get('/getAttendance', authMiddleware, getAllAttendance);
 
 /**
  * @swagger
+ * tags:
+ *   - name: Attendance
  * /attendance/getAttendanceById:
  *   get:
- *     summary: Get a single attendance record by ID
+ *     summary: Get a specific attendance record by ID
+ *     tags: [Attendance]
  *     parameters:
  *       - in: query
  *         name: id
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
+ *         description: The ID of the attendance record
  *     responses:
  *       200:
- *         description: A single attendance record
+ *         description: An attendance record
  */
 attendanceRouter.get('/getAttendanceById', authMiddleware, getAttendanceById);
 
 /**
  * @swagger
+ * tags:
+ *   - name: Attendance
  * /attendance/createAttendance:
  *   post:
  *     summary: Create a new attendance record
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Attendance'
+ *     tags: [Attendance]
  *     responses:
- *       200:
+ *       201:
  *         description: The created attendance record
  */
 attendanceRouter.post('/createAttendance', authMiddleware, roleMiddleware, createAttendance);
 
 /**
  * @swagger
+ * tags:
+ *   - name: Attendance
  * /attendance/updateAttendance/{id}:
  *   patch:
- *     summary: Update an existing attendance record
+ *     summary: Update an existing attendance record by ID
+ *     tags: [Attendance]
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Attendance'
+ *         required: true
+ *         description: The ID of the attendance record
  *     responses:
  *       200:
  *         description: The updated attendance record
@@ -81,18 +83,22 @@ attendanceRouter.patch('/updateAttendance/:id', authMiddleware, roleMiddleware, 
 
 /**
  * @swagger
+ * tags:
+ *   - name: Attendance
  * /attendance/deleteAttendance/{id}:
  *   delete:
- *     summary: Delete an attendance record
+ *     summary: Delete an attendance record by ID
+ *     tags: [Attendance]
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
+ *         required: true
+ *         description: The ID of the attendance record
  *     responses:
  *       200:
- *         description: The deleted attendance record
+ *         description: A message indicating the record was deleted
  */
 attendanceRouter.delete('/deleteAttendance/:id', authMiddleware, roleMiddleware, deleteAttendance);
 

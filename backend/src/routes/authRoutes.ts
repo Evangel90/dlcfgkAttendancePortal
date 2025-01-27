@@ -5,9 +5,12 @@ const authRouter = express.Router();
 
 /**
  * @swagger
+ * tags:
+ *   - name: Authentication
  * /user/register:
  *   post:
  *     summary: Register a new user
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -27,9 +30,12 @@ authRouter.post('/register', register);
 
 /**
  * @swagger
+ * tags:
+ *   - name: Authentication
  * /user/login:
  *   post:
  *     summary: Login a user
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
